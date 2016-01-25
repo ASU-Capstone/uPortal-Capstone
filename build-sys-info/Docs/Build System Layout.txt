@@ -1,0 +1,33 @@
+Build System Layout/Framework/Structure
+
+Ant
+Build.xml
+
+* Location: .\ build.xml
+* 
+* Location: .\assembly\build.xml
+* Primary Focus: Build Packages and Assemblies for uPortal
+* REQUIRES: .\bootstrap\build_includes.xml
+* Target(s)
+o Start
+* Hsql-start 
+* Start local hyper-sql database server running in cmd
+* Tomcat-start	[Depends=”prepare-tomcat”]
+* Prepare-tomcat
+o Sets permissions of executable files (RW / UGO+rx)
+* Check catalina.pid
+* Check ports (HTTP/Shutdown)
+* Start Tomcat (/bin/start.{exeSuffix} with maxPermSize values
+* Wait for Tomcat start, check every 10 seconds, max wait time: 5 minutes
+
+* Stop
+* Tomcat-stop
+o Prepare-tomcat
+* Hsql-stop
+o Stop local hyper-sql database server running in cmd
+o Help
+o Test-macros
+o uPortal_Includes.test-macros
+* Location .\assembly\quick-start\build.xml
+* Primary Focus: Build Quick-Start version of uPortal	
+
