@@ -1,0 +1,8 @@
+group = 'org.jasig.portal.portlets-overlay'
+apply plugin: 'war'
+
+jar.enabled = true
+description = 'Sakai Connector Portlet'
+dependencies {
+    compile group: 'org.jasig.portlet', name: 'sakai-connector', version:'1.5.2'
+}

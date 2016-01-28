@@ -1,0 +1,54 @@
+rootProject.name = 'uportal-parent'
+include ':uportal-db'
+include ':uportal-war'
+include ':uportal-ear'
+include ':uportal-portlets-overlay:Announcements'
+include ':uportal-portlets-overlay:basiclti-portlet'
+include ':uportal-portlets-overlay:BookmarksPortlet'
+include ':uportal-portlets-overlay:CalendarPortlet'
+include ':uportal-portlets-overlay:cas'
+include ':uportal-portlets-overlay:cas-proxy-test-portlet'
+include ':uportal-portlets-overlay:email-preview'
+include ':uportal-portlets-overlay:FunctionalTestsPortlet'
+include ':uportal-portlets-overlay:jasig-widget-portlets'
+include ':uportal-portlets-overlay:pluto-testsuite'
+include ':uportal-portlets-overlay:NewsReaderPortlet'
+include ':uportal-portlets-overlay:NotificationPortlet'
+include ':uportal-portlets-overlay:sakai-connector'
+include ':uportal-portlets-overlay:SimpleContentPortlet'
+include ':uportal-portlets-overlay:WeatherPortlet'
+include ':uportal-portlets-overlay:WebProxyPortlet'
+include ':uportal-portlets-overlay'
+include ':bootstrap:hsqldb'
+include ':bootstrap:pluto-assembler'
+include ':bootstrap:uportal-ant-tasks'
+include ':bootstrap'
+include ':uportal-search-api'
+include ':uportal-platform-api'
+
+project(':uportal-db').projectDir = "$rootDir/uportal-db" as File
+project(':uportal-war').projectDir = "$rootDir/uportal-war" as File
+project(':uportal-ear').projectDir = "$rootDir/uportal-ear" as File
+project(':uportal-portlets-overlay:Announcements').projectDir = "$rootDir/uportal-portlets-overlay/AnnouncementsPortlet" as File
+project(':uportal-portlets-overlay:basiclti-portlet').projectDir = "$rootDir/uportal-portlets-overlay/basiclti-portlet" as File
+project(':uportal-portlets-overlay:BookmarksPortlet').projectDir = "$rootDir/uportal-portlets-overlay/BookmarksPortlet" as File
+project(':uportal-portlets-overlay:CalendarPortlet').projectDir = "$rootDir/uportal-portlets-overlay/CalendarPortlet" as File
+project(':uportal-portlets-overlay:cas').projectDir = "$rootDir/uportal-portlets-overlay/cas" as File
+project(':uportal-portlets-overlay:cas-proxy-test-portlet').projectDir = "$rootDir/uportal-portlets-overlay/cas-proxy-test-portlet" as File
+project(':uportal-portlets-overlay:email-preview').projectDir = "$rootDir/uportal-portlets-overlay/email-preview" as File
+project(':uportal-portlets-overlay:FunctionalTestsPortlet').projectDir = "$rootDir/uportal-portlets-overlay/FunctionalTestsPortlet" as File
+project(':uportal-portlets-overlay:jasig-widget-portlets').projectDir = "$rootDir/uportal-portlets-overlay/jasig-widget-portlets" as File
+project(':uportal-portlets-overlay:pluto-testsuite').projectDir = "$rootDir/uportal-portlets-overlay/pluto-testsuite" as File
+project(':uportal-portlets-overlay:NewsReaderPortlet').projectDir = "$rootDir/uportal-portlets-overlay/NewsReaderPortlet" as File
+project(':uportal-portlets-overlay:NotificationPortlet').projectDir = "$rootDir/uportal-portlets-overlay/NotificationPortlet" as File
+project(':uportal-portlets-overlay:sakai-connector').projectDir = "$rootDir/uportal-portlets-overlay/sakai-connector-portlet" as File
+project(':uportal-portlets-overlay:SimpleContentPortlet').projectDir = "$rootDir/uportal-portlets-overlay/SimpleContentPortlet" as File
+project(':uportal-portlets-overlay:WeatherPortlet').projectDir = "$rootDir/uportal-portlets-overlay/WeatherPortlet" as File
+project(':uportal-portlets-overlay:WebProxyPortlet').projectDir = "$rootDir/uportal-portlets-overlay/WebProxyPortlet" as File
+project(':uportal-portlets-overlay').projectDir = "$rootDir/uportal-portlets-overlay" as File
+project(':bootstrap:hsqldb').projectDir = "$rootDir/bootstrap/hsqldb" as File
+project(':bootstrap:pluto-assembler').projectDir = "$rootDir/bootstrap/pluto-assembler" as File
+project(':bootstrap:uportal-ant-tasks').projectDir = "$rootDir/bootstrap/uportal-ant-tasks" as File
+project(':bootstrap').projectDir = "$rootDir/bootstrap" as File
+project(':uportal-search-api').projectDir = "$rootDir/uportal-search-api" as File
+project(':uportal-platform-api').projectDir = "$rootDir/uportal-platform-api" as File
