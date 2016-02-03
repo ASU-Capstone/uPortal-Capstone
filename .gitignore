@@ -26,3 +26,4 @@ npm-debug.log
 !/build-sys-info/Docs/
 /build-sys-info/BuildSystemInfo/**
 .gradle/
+build/
