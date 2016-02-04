@@ -1,5 +1,6 @@
 rootProject.name = 'uportal-parent'
 include ':uportal-db'
+include ':uportal-search-api'
 include ':uportal-war'
 include ':uportal-ear'
 include ':uportal-portlets-overlay:Announcements'
@@ -23,7 +24,6 @@ include ':bootstrap:hsqldb'
 include ':bootstrap:pluto-assembler'
 include ':bootstrap:uportal-ant-tasks'
 include ':bootstrap'
-include ':uportal-search-api'
 include ':uportal-platform-api'
 
 project(':uportal-db').projectDir = "$rootDir/uportal-db" as File

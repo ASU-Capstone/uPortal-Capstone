@@ -1,5 +1,6 @@
 
 description = 'uPortal Search API'
+archivesBaseName = 'uportal-search-api'
 dependencies {
     compile group: 'org.jvnet.jaxb2_commons', name: 'jaxb2-basics-runtime', version:'0.6.5.1'
 }
