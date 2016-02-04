@@ -1,8 +1,6 @@
-
-apply plugin: 'db'
-
-jar.enabled = true
-desciption = 'uPortal DB'
+description = 'uPortal DB'
 dependencies {
-	compile project(':hsqldb')
+    compile group: 'org.hsqldb', name: 'hsqldb', version:'2.3.2'
+	
+	 
 }

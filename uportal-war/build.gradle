@@ -1,5 +1,7 @@
 
 apply plugin: 'war'
+apply plugin: 'java'
+
 
 jar.enabled = true
 description = 'uPortal WAR'
