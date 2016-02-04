@@ -1,0 +1,8 @@
+
+apply plugin: 'db'
+
+jar.enabled = true
+desciption = 'uPortal DB'
+dependencies {
+	compile project(':hsqldb')
+}
