@@ -1,8 +1,0 @@
-group = 'org.jasig.portal.portlets-overlay'
-apply plugin: 'war'
-
-jar.enabled = true
-description = 'CAS Proxy Test Portlet'
-dependencies {
-    compile group: 'org.jasig.portlet', name: 'cas-proxy-test-portlet', version:'1.0.0-RC3'
-}

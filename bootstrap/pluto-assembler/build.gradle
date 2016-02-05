@@ -1,8 +1,0 @@
-
-description = 'Bootstrap - Pluto Assembler Dependencies'
-dependencies {
-    compile group: 'org.apache.portals.pluto', name: 'pluto-ant-tasks', version:'2.1.0-M3'
-    compile(group: 'org.apache.portals.pluto', name: 'pluto-util', version:'2.1.0-M3') {
-exclude(module: 'slf4j-jdk14')
-    }
-}

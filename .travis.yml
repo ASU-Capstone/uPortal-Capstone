@@ -1,8 +1,0 @@
-language: java
-sudo: false
-
-before_install:
-  - unset GEM_PATH
-
-after_success:
-  - mvn clean test cobertura:cobertura coveralls:cobertura

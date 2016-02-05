@@ -1,9 +1,0 @@
-group = 'org.jasig.portal.portlets-overlay'
-apply plugin: 'war'
-
-jar.enabled = true
-description = 'Jasig Widget Portlets'
-dependencies {
-    compile group: 'org.jasig.portlet', name: 'jasig-widget-portlets', version:'2.2.0'
-    providedCompile group: 'org.jasig.portlet', name: 'jasig-widget-portlets', version:'2.2.0', classifier:'classes'
-}

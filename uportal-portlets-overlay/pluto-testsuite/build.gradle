@@ -1,8 +1,0 @@
-group = 'org.jasig.portal.portlets-overlay'
-apply plugin: 'war'
-
-jar.enabled = true
-description = 'Pluto Test Suite Portlet'
-dependencies {
-    compile group: 'org.apache.portals.pluto', name: 'pluto-testsuite', version:'2.1.0-M3'
-}

@@ -1,9 +1,0 @@
-group = 'org.jasig.portal.portlets-overlay'
-apply plugin: 'war'
-
-jar.enabled = true
-description = 'Simple Content Portlet'
-dependencies {
-    compile group: 'org.jasig.portlet.simplecontent', name: 'SimpleContentPortlet', version:'2.0.2-M2'
-  compile project(':uportal-db')
-}
