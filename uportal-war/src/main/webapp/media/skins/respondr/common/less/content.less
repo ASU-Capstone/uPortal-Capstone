@@ -57,26 +57,12 @@
     padding: 10px;
 }
 
-/*
-.portlet .view-multi-select .portlet-search {
-    top: 15px;
-}
-
-.portlet .view-multi-select .portlet-selection {
-    margin-top: 0;
-}
-*/
-
 .portlet-header {
 
 }
 
 .portlet-title {
     .border-radiuses-top(5px);
-
-    .btn-group {
-
-    }
 }
 
 .portlet-content {
@@ -142,7 +128,7 @@ section h4 {
         }
     }
 
-    .btn-group {
+    .portlet-controls {
         position: absolute;
         top: 2px;
         right: 0;
@@ -162,6 +148,12 @@ section h4 {
                     border-top-color: @portlet-options-link-hover-color;
                 }
             }
+        }
+
+        .grab-handle {
+            display: inline-block;
+            font-size: 18px;
+            margin-left: 3px;
         }
     }
 }
@@ -232,6 +224,7 @@ section.emergency-alert {
 }
 
     #config-lightbox .modal-dialog {
+        position: initial;
         width: auto;
         max-width: 1000px;
         min-width: 600px;
