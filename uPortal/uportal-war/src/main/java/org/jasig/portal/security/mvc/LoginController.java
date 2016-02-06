@@ -20,6 +20,8 @@ package  org.jasig.portal.security.mvc;
 
 import java.io.IOException;
 import java.util.Enumeration;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -37,28 +39,29 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * Receives the username and password and tries to authenticate the user.
- * The form presented by org.jasig.portal.channels.CLogin is typically used
- * to generate the post to this servlet.
+ * Controller to work with the local login form.
+ * The form presented by org.jasig.portal.channels.CLogin is typically used to generate the post to this servlet.
+ * Actual login processing occurs in PortalPreAuthenticatedProcessingFilter.
  * @author Bernie Durfee (bdurfee@interactivebusiness.com)
  * @version $Revision$
  * @author Don Fracapane (df7@columbia.edu)
- * Added properties in the security properties file that hold the tokens used to
- * represent the principal and credential for each security context.
  */
 @Controller
 @RequestMapping("/Login")
 public class LoginController {
     public static final String REFERER_URL_PARAM = "refUrl";
-    
+
     public static final String AUTH_ATTEMPTED_KEY = "up_authenticationAttempted";
     public static final String AUTH_ERROR_KEY = "up_authenticationError";
     public static final String ATTEMPTED_USERNAME_KEY = "up_attemptedUserName";
     public static final String REQUESTED_PROFILE_KEY = "profile";
-    
+
     protected final Log log = LogFactory.getLog(getClass());
     protected final Log swapperLog = LogFactory.getLog("org.jasig.portal.portlets.swapper");
-    
+
+    // Disallow /Login/refUrl=//location which could maliciously redirect user's browser to another site
+    // by whitelisting a refUrl of nothing, /, or / plus anything other than another /
+    private static final Pattern LOCAL_URL_PATTERN = Pattern.compile("|/|/[^/].*");
     private IPortalUrlProvider portalUrlProvider;
     private IPersonManager personManager;
 
@@ -91,18 +94,17 @@ public class LoginController {
 
         final String refUrl = request.getParameter(REFERER_URL_PARAM);
         if (refUrl != null) {
-            if (refUrl.startsWith("/")) {
+            if (isLocalUrl(refUrl)) {
                 redirectTarget = refUrl;
             }
             else {
-                log.warn("Refernce URL passed in does not start with a / and will be ignored: " + refUrl);
+                log.warn("Reference URL passed in does not start with a / and will be ignored: " + refUrl);
             }
         }
 
         if (redirectTarget == null) {
             /* Grab the target functional name, if any, off the login request.
-             * Also any arguments for the target
-             * We will pass them  along after authentication.
+             * Also any arguments for the target. We will pass them  along after authentication.
              */
             String targetFname = request.getParameter("uP_fname");
 
@@ -113,7 +115,7 @@ public class LoginController {
             else {
                 try {
                     final IPortalUrlBuilder urlBuilder = this.portalUrlProvider.getPortalUrlBuilderByPortletFName(request, targetFname, UrlType.RENDER);
-                    
+
                     @SuppressWarnings("unchecked")
                     Enumeration<String> e = request.getParameterNames();
                     while (e.hasMoreElements()) {
@@ -122,7 +124,7 @@ public class LoginController {
                             urlBuilder.addParameter(paramName, request.getParameterValues(paramName));
                         }
                     }
-                    
+
                     redirectTarget = urlBuilder.getUrlString();
                 }
                 catch (IllegalArgumentException e) {
@@ -131,9 +133,9 @@ public class LoginController {
                 }
             }
         }
-        
+
         IPerson person = null;
-        
+
         final Object authError = request.getSession(false).getAttribute(LoginController.AUTH_ERROR_KEY);
         if (authError == null || !((Boolean)authError)) {
             person = this.personManager.getPerson(request);
@@ -155,5 +157,16 @@ public class LoginController {
         }
 
         response.sendRedirect(encodedRedirectURL);
+    }
+
+    /**
+     * Test if URL string is a local URL.
+     *
+     * @param url   URL to check
+     * @return      {@code True} if it is local, else return {@code False}
+     */
+    static boolean isLocalUrl(final String url) {
+        Matcher m = LOCAL_URL_PATTERN.matcher(url);
+        return m.matches();
     }
 }

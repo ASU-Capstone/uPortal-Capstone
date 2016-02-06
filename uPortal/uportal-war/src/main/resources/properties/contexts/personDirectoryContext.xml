@@ -89,14 +89,18 @@
 
     <!--
      | Servlet filter that creates an attribute for the serverName
-     +
-    -->
+     +-->
     <bean id="requestAttributeSourceFilter"
         class="org.jasig.services.persondir.support.web.RequestAttributeSourceFilter">
         <property name="additionalDescriptors" ref="requestAdditionalDescriptors" />
         <property name="usernameAttribute" value="remoteUser" />
         <property name="remoteUserAttribute" value="remoteUser" />
         <property name="serverNameAttribute" value="serverName" />
+        <!-- The processing position should be set to BOTH for uPortal because the session-scoped bean
+             sessionScopeAdditionalDescriptors gets cleared during /Login processing and request attributes
+             (particularly from HTTP Headers populated by Shibboleth) would be lost.  By executing the filter both
+             before and after, the latter execution will re-add the request attributes to the session-scoped bean.
+             See http://permalink.gmane.org/gmane.comp.java.jasig.uportal/10771 for more information. -->
         <property name="processingPosition" value="BOTH" />
         <property name="headerAttributeMapping">
             <util:map>
@@ -111,7 +115,9 @@
 
     <!--
      | Session-scoped descriptors object. One of these will exist for each user in their session. It will store the
-     | attributes from the request set by the requestAttributeSourceFilter
+     | attributes from the request set by the requestAttributeSourceFilter.  This must hold both a session-scoped
+     | bean and request-scoped bean.  See http://permalink.gmane.org/gmane.comp.java.jasig.uportal/10771
+     | for more information.
      +-->
     <bean id="requestAdditionalDescriptors" class="org.jasig.services.persondir.support.MediatingAdditionalDescriptors">
         <property name="delegateDescriptors">

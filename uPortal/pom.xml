@@ -124,13 +124,13 @@
         <!-- WAR Dependency Version Properties -->
         <AnnouncementsPortlet.version>2.2.0-M1</AnnouncementsPortlet.version>
         <basiclti-portlet.version>1.4.2</basiclti-portlet.version>
-        <BookmarksPortlet.version>1.1.0-M1</BookmarksPortlet.version>
+        <BookmarksPortlet.version>1.1.0</BookmarksPortlet.version>
         <CalendarPortlet.version>2.2.1</CalendarPortlet.version>
         <cas-server.version>3.5.2.1</cas-server.version>
         <cas-proxy-test-portlet.version>1.0.0-RC3</cas-proxy-test-portlet.version>
         <email-preview.version>2.1.1-M4</email-preview.version>
         <FunctionalTestsPortlet.version>1.1.0</FunctionalTestsPortlet.version>
-        <jasig-widget-portlets.version>2.1.7-M2</jasig-widget-portlets.version>
+        <jasig-widget-portlets.version>2.2.0</jasig-widget-portlets.version>
         <NewsReaderPortlet.version>4.0.0</NewsReaderPortlet.version>
         <NotificationPortlet.version>2.1.1</NotificationPortlet.version>
         <sakai-connector-portlet.version>1.5.2</sakai-connector-portlet.version>
@@ -1248,8 +1248,9 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>com.mycila.maven-license-plugin</groupId>
-                <artifactId>maven-license-plugin</artifactId>
+                <groupId>com.mycila</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>2.11</version>
                 <configuration>
                     <aggregate>true</aggregate>
                     <excludes>
@@ -1524,7 +1525,10 @@
                     <artifactId>cobertura-maven-plugin</artifactId>
                     <version>${cobertura-maven-plugin.version}</version>
                     <configuration>
-                        <format>xml</format>
+                        <formats>
+                            <format>html</format>
+                            <format>xml</format>
+                        </formats>
                         <maxmem>256m</maxmem>
                         <!-- aggregated reports for multi-module projects -->
                         <aggregate>true</aggregate>

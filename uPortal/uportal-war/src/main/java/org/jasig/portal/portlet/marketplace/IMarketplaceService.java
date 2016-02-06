@@ -26,7 +26,6 @@ import org.jasig.portal.security.IAuthorizationPrincipal;
 import org.jasig.portal.security.IPerson;
 
 import java.util.Set;
-import java.util.concurrent.Future;
 
 /**
  * Marketplace service layer responsible for gathering and applying policy about what Marketplace entries
@@ -39,10 +38,12 @@ public interface IMarketplaceService {
      * Return the Marketplace entries visible to the user.
      * Marketplace entries are visible to the user when the user enjoys permission for the
      * UP_PORTLET_SUBSCRIBE.BROWSE or UP_PORTLET_PUBLISH.MANAGE activity on the portlet entity.
+     * @param user The non-null user
+     * @param categories Restricts the output to entries within the specified categories if non-empty
      * @throws IllegalArgumentException when passed in user is null
      * @since uPortal 4.2
      */
-    ImmutableSet<MarketplaceEntry> browseableMarketplaceEntriesFor(IPerson user);
+    ImmutableSet<MarketplaceEntry> browseableMarketplaceEntriesFor(IPerson user, final Set<PortletCategory> categories);
 
     /**
      * Return the potentially empty Set of portlet categories such that
@@ -51,10 +52,11 @@ public interface IMarketplaceService {
      * (That is, the category is not "empty" from the perspective of this user browsing).
      *
      * @param user non-null user
+     * @param categories Restricts the output to entries within the specified categories if non-empty
      * @return potentially empty non-null Set of browseable categories
      * @since uPortal 4.1
      */
-    Set<PortletCategory> browseableNonEmptyPortletCategoriesFor(IPerson user);
+    Set<PortletCategory> browseableNonEmptyPortletCategoriesFor(IPerson user, final Set<PortletCategory> categories);
 
     /**
      * Answers whether the given user may browse the portlet marketplace entry for the given portlet definition.
@@ -74,11 +76,12 @@ public interface IMarketplaceService {
      * The user MUST have BROWSE permission on all members of the Set.
      *
      * @param user the non-null user for whom featured portlets are desired.
+     * @param categories Restricts the output to entries within the specified categories if non-empty
      * @return non-null potentially empty Set of featured portlet MarketplaceEntries.
      *
      * @since uPortal 4.2
      */
-    Set<MarketplaceEntry> featuredEntriesForUser(IPerson user);
+    Set<MarketplaceEntry> featuredEntriesForUser(IPerson user, final Set<PortletCategory> categories);
 
     /**
      * Provides a {@link MarketplacePortletDefinition} object that corresponds to the specified portlet definition.
@@ -87,13 +90,26 @@ public interface IMarketplaceService {
      * @return A {@link MarketplacePortletDefinition} wrapping the specified portlet definition.
      */
     MarketplacePortletDefinition getOrCreateMarketplacePortletDefinition(IPortletDefinition portletDefinition);
-    
+
     /**
      * Provides a {@link MarketplacePortletDefinition} object that corresponds to the specified portlet definition.
      * Implementations of IMarketplaceService may cache these objects to-taste.
      * @param fname a valid fname of a portlet
-     * @return A {@link MarketplacePortletDefinition} wrapping the specified portlet definition. 
+     * @return A {@link MarketplacePortletDefinition} wrapping the specified portlet definition.
      */
     MarketplacePortletDefinition getOrCreateMarketplacePortletDefinitionIfTheFnameExists(String fname);
+
+    /**
+     * Answers whether the given user may add the portlet to their layout
+     *
+     * @param user a non-null IPerson who might be permitted to add
+     * @param portletDefinition a non-null portlet definition
+     * @return true if permitted, false otherwise
+     * @throws IllegalArgumentException if user is null
+     * @throws IllegalArgumentException if portletDefinition is null
+     *
+     * @since uPortal 4.2
+     */
+    boolean mayAddPortlet(final IPerson user, final IPortletDefinition portletDefinition);
 
 }
