@@ -1,0 +1,9 @@
+group = 'org.jasig.portal.portlets-overlay'
+apply plugin: 'war'
+
+jar.enabled = true
+description = 'Jasig Notification Portlet'
+dependencies {
+    compile group: 'org.jasig.portlet.notification', name: 'notification-portlet-webapp', version:'2.1.1'
+    providedCompile group: 'org.jasig.portlet.notification', name: 'notification-portlet-webapp', version:'2.1.1', classifier:'classes'
+}

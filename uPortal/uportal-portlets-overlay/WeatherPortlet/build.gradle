@@ -1,0 +1,8 @@
+group = 'org.jasig.portal.portlets-overlay'
+apply plugin: 'war'
+
+jar.enabled = true
+description = 'Weather Portlet'
+dependencies {
+    compile group: 'org.jasig.portlet', name: 'WeatherPortlet', version:'1.1.4-M2'
+}

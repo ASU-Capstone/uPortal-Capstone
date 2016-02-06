@@ -1,0 +1,5 @@
+
+description = 'Bootstrap - Ant Tasks Dependencies'
+dependencies {
+    compile group: 'org.jasig.portal.tools', name: 'uportal-ant-tasks', version:'1.0.1'
+}

@@ -1,0 +1,8 @@
+group = 'org.jasig.portal.portlets-overlay'
+apply plugin: 'war'
+
+jar.enabled = true
+description = 'Basic LTI Portlet'
+dependencies {
+    compile group: 'org.jasig.portlet', name: 'basiclti-portlet', version:'1.4.2'
+}

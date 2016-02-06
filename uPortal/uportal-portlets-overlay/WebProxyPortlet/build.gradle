@@ -1,0 +1,9 @@
+group = 'org.jasig.portal.portlets-overlay'
+apply plugin: 'war'
+
+jar.enabled = true
+description = 'Web Proxy Portlet'
+dependencies {
+    compile group: 'org.jasig.portlet.proxy', name: 'WebProxyPortlet', version:'2.0.0-M5'
+  compile project(':uportal-db')
+}

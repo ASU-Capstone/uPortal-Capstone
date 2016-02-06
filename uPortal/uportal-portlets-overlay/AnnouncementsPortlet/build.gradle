@@ -1,0 +1,9 @@
+group = 'org.jasig.portal.portlets-overlay'
+apply plugin: 'war'
+
+jar.enabled = true
+description = 'Announcements Portlet'
+dependencies {
+    compile group: 'org.jasig.portlet', name: 'Announcements', version:'2.2.0-M1'
+  compile project(':uportal-db')
+}

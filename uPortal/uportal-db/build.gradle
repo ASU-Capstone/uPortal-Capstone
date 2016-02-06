@@ -1,0 +1,16 @@
+description = 'uPortal DB'
+dependencies {
+	/* Currently just testing. Dependencies (+version info) will be moved to a 
+	properties file in root in the future. i.e. gradle.properties.
+	**dependency versions is passed by Ant.
+	
+	ref: https://github.com/ASU-Capstone/uPortal-Capstone/commit/a72d28ac46905cc7b0ef7b890211c3c05506d0ef#commitcomment-15918074
+	
+	*Planning on using shell script(s) for configuration* and deployment, as to have
+	a seperation of concerns (Gradle -> compilation). With customizable enviroment properties. 
+	
+	*/
+    compile group: 'org.hsqldb', name: 'hsqldb', version:'2.3.2'
+	
+	 
+}

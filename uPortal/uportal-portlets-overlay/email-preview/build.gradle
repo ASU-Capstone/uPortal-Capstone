@@ -1,0 +1,8 @@
+group = 'org.jasig.portal.portlets-overlay'
+apply plugin: 'war'
+
+jar.enabled = true
+description = 'Email Preview Portlet'
+dependencies {
+    compile group: 'org.jasig.portlet', name: 'email-preview', version:'2.1.1-M4'
+}

@@ -1,0 +1,36 @@
+/*
+ant.importBuild 'build.xml'
+
+group = 'org.jasig.portal'
+archivesBaseName = 'uportal-parent'
+
+*/
+
+
+allprojects  {
+  apply plugin: 'maven'
+
+  group = 'org.jasig.portal'
+version = '4.3.0-SNAPSHOT'
+}
+
+subprojects {
+  apply plugin: 'java'
+  /* Set to 1.7 from 1.5. Should also build with 1.8 as UPortal 4.3 includes 1.8 support. */
+  sourceCompatibility = 1.7
+  targetCompatibility = 1.7
+
+  
+  repositories {
+    mavenLocal()
+    
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+    maven { url "http://repository.apache.org/snapshots" }
+    maven { url "http://repo.maven.apache.org/maven2" }
+  }
+
+  configurations.all {
+}
+  
+  
+}
