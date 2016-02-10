@@ -1,0 +1,30 @@
+/*.sublime*
+/.settings
+/.project
+/.classpath
+/logs
+/bin
+/target
+/build.properties
+/data
+/.ant-targets-build.xml
+*.sass-cache
+/uportal-impl
+/assembly/.ant-targets-build.xml
+*.iml
+/.idea
+uportal-portlets-overlay/*/overlays
+uportal-platform-api/target/
+**/node_modules/
+npm-debug.log
+**/.DS_Store
+
+#Gradle
+.gradle
+build/
+# Ignore Gradle GUI config
+gradle-app.setting
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+# Cache of project
+.gradletasknamecache
