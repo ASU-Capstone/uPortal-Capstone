@@ -32,5 +32,30 @@ subprojects {
   configurations.all {
 }
   
-  
 }
+
+buildscript {
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
+  }
+  dependencies {
+    classpath "no.nils:wsdl2java:0.9"
+  }
+}
+
+apply plugin: "no.nils.wsdl2java"
+
+buildscript {
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
+  }
+  dependencies {
+    classpath "com.github.jacobono:gradle-jaxb-plugin:1.3.5"
+  }
+}
+
+apply plugin: "com.github.jacobono.jaxb"
