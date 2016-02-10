@@ -1,12 +1,36 @@
 
+buildscript {
+    repositories {
+        maven { url "https://repo.spring.io/libs-release" }
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.10.RELEASE")
+
+//####################### XJC - JDK 1.7/1.8 ####################
+        classpath 'com.github.jacobono:gradle-jaxb-plugin:1.3.5'
+//######################
+
+    }
+}
+
+
+
+
 apply plugin: 'war'
 apply plugin: 'java'
+apply plugin: 'com.github.jacobono.jaxb'
+
 
 /* Todo: IDE plugins   */
 
 jar.enabled = true
 description = 'uPortal WAR'
 dependencies {
+   jaxb 'com.sun.xml.bind:jaxb-xjc:2.2.7-b41'
+    jaxb 'com.sun.xml.bind:jaxb-impl:2.2.7-b41'
+    jaxb 'javax.xml.bind:jaxb-api:2.2.7'
   compile project(':uportal-db')
   compile project(':uportal-search-api')
     compile group: 'org.antlr', name: 'stringtemplate', version:'4.0.2'
@@ -226,4 +250,15 @@ exclude(module: 'slf4j-jdk14')
     }
     providedCompile group: 'org.hibernate', name: 'hibernate-jpamodelgen', version:'1.2.0.Final'
   providedCompile project(':uportal-platform-api')
+}
+
+jaxb {
+   xjc {
+     xsdDir = "uportal-war/src/main/resources/xsd/"
+     generatePackage = "org.jvnet.jaxb2.maven2" 
+	 	 destinationDir = "uportal/src/test"
+		 	 destinationDir = "uportal/src/test"
+	 taskClassname      = "org.jvnet.jaxb2_commons.xjc.XJC2Task"
+     args               = ["-Xinheritance", "-Xannotate"]
+   }
 }
