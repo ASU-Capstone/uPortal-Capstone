@@ -251,7 +251,7 @@ exclude(module: 'slf4j-jdk14')
     providedCompile group: 'org.hibernate', name: 'hibernate-jpamodelgen', version:'1.2.0.Final'
   providedCompile project(':uportal-platform-api')
 }
-
+/*
 jaxb {
    xjc {
      xsdDir = "uportal-war/src/main/resources/xsd/"
@@ -261,4 +261,14 @@ jaxb {
 	 taskClassname      = "org.jvnet.jaxb2_commons.xjc.XJC2Task"
      args               = ["-Xinheritance", "-Xannotate"]
    }
+}*/
+
+jaxb {
+	bindingsDir = "src/main/binding"
+	xsdDir = "uportal-war/src/main/resources/xsd"
+	episodesDir = "$buildDir/generated-sources/xjc/META-INF"
+	
+	xjc {
+		args = ["-XtoString", "-Xequals", "-XhashCode", "-Xdefault-value", "-no-header", "-readOnly", "-mark-generated"]
+	}
 }
