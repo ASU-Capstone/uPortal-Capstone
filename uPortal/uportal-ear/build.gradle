@@ -1,5 +1,6 @@
 
 description = 'uPortal EAR'
+ apply plugin: "java"
 dependencies {
   compile project(':uportal-war')
   compile project(':uportal-portlets-overlay:Announcements')

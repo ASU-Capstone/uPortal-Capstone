@@ -1,0 +1,8 @@
+jaxb {
+	bindingsDir = "src/main/binding"
+	episodesDir = "$buildDir/generated-sources/xjc/META-INF"
+	xsdDir = "src/main/resources/xsd"
+	xjc {
+		args = ["-XtoString", "-Xequals", "-XhashCode", "-Xdefault-value", "-no-header", "-readOnly", "-mark-generated"]
+	}
+}

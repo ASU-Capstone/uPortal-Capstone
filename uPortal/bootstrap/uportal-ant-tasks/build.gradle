@@ -1,5 +1,7 @@
 
 description = 'Bootstrap - Ant Tasks Dependencies'
+apply plugin: "com.github.jacobono.jaxb"
+ apply from: rootProject.file("gradle/xjc/xjc.gradle")
 dependencies {
     compile group: 'org.jasig.portal.tools', name: 'uportal-ant-tasks', version:'1.0.1'
 }

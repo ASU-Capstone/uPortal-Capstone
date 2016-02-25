@@ -1,5 +1,25 @@
 description = 'uPortal DB'
+
+
+/*
+  repositories {
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+        maven { url "http://oss.sonatype.org/content/repositories/releases/" }
+        maven { url "http://repo.springsource.org/plugins-release" } 
+        maven { url "https://maven.java.net/content/repositories/releases" }
+        maven { url "https://repository.apache.org/content/repositories/releases" } 
+        maven { url "http://dl.bintray.com/robfletcher/gradle-plugins" }
+
+        mavenLocal()
+        mavenCentral()
+        jcenter() 
+    }*/
+	
+	 apply plugin: "java"
 dependencies {
+
+
+
 	/* Currently just testing. Dependencies (+version info) will be moved to a 
 	properties file in root in the future. i.e. gradle.properties.
 	**dependency versions is passed by Ant.
@@ -10,7 +30,9 @@ dependencies {
 	a seperation of concerns (Gradle -> compilation). With customizable enviroment properties. 
 	
 	*/
-    compile group: 'org.hsqldb', name: 'hsqldb', version:'2.3.2'
+   compile group: 'org.hsqldb', name: 'hsqldb', version:'2.3.2'
+   compile group: 'org.hsqldb', name: 'sqltool', version:'2.3.2'
 	
 	 
 }
+//}
