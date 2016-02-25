@@ -17,8 +17,8 @@ version = '4.3.0-SNAPSHOT'
 subprojects {
   apply plugin: 'java'
   /* Set to 1.7 from 1.5. Should also build with 1.8 as UPortal 4.3 includes 1.8 support. */
-  sourceCompatibility = 1.7
-  targetCompatibility = 1.7
+  sourceCompatibility = 1.8
+  targetCompatibility = 1.8
 
   
   repositories {
