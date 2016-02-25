@@ -264,9 +264,10 @@ jaxb {
 }*/
 
 jaxb {
-	bindingsDir = "src/main/binding"
 	xsdDir = "uportal-war/src/main/resources/xsd"
-	episodesDir = "$buildDir/generated-sources/xjc/META-INF"
+    bindingsDir = "src/main/binding"
+    bindings = ["xsd-bindings.xjb"]
+	//episodesDir = "$buildDir/generated-sources/xjc/META-INF"
 	
 	xjc {
 		args = ["-XtoString", "-Xequals", "-XhashCode", "-Xdefault-value", "-no-header", "-readOnly", "-mark-generated"]
