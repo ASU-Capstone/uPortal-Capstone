@@ -10,32 +10,29 @@ archivesBaseName = 'uportal-parent'
 buildscript {
     repositories {
         maven { url "https://repo.spring.io/libs-release" }
+        maven {url "https://plugins.gradle.org/m2/" } //JACOBONO JAXB
         mavenLocal()
         mavenCentral()
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.10.RELEASE")
+        classpath "com.github.jacobono:gradle-jaxb-plugin:1.3.5" //JACOBONO JAXB
 
 //####################### XJC - JDK 1.7/1.8 ####################
-        classpath 'com.github.jacobono:gradle-jaxb-plugin:1.3.5'
+        //classpath 'com.github.jacobono:gradle-jaxb-plugin:1.3.5'
 //######################
 
     }
 }
-
-
+apply plugin: "com.github.jacobono.jaxb"
 
 allprojects  {
   apply plugin: 'java'
   apply plugin: 'eclipse'
   apply plugin: 'idea'
  // apply plugin: 'spring-boot'
-//####################### XJC - JDK 1.7/1.8 ####################
-//apply plugin: 'com.github.jacobono.jaxb'
-//######################
-
   
-  group = 'org.jasig.portal'
+group = 'org.jasig.portal'
 version = '4.3.0-SNAPSHOT'
 
 repositories{
