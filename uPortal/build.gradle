@@ -1,33 +1,70 @@
-/*
-ant.importBuild 'build.xml'
-
-group = 'org.jasig.portal'
-archivesBaseName = 'uportal-parent'
-
-*/
+buildscript {
+    repositories {
+        mavenCentral()
+		   maven { url 'http://repo.spring.io/plugins-release' } 
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.7.RELEASE")
+		    classpath 'org.springframework.build.gradle:propdeps-plugin:0.0.5' 
+    }
+}
 
 
 allprojects  {
-  apply plugin: 'maven'
-
+apply plugin: 'java'
+    apply plugin: 'maven'
+  apply plugin: 'propdeps' 
+  apply plugin: 'propdeps-maven' 
+  apply plugin: 'propdeps-idea' 
+  apply plugin: 'propdeps-eclipse'
   group = 'org.jasig.portal'
+  
+  
 version = '4.3.0-SNAPSHOT'
-}
-
-subprojects {
-  apply plugin: 'java'
-  /* Set to 1.7 from 1.5. Should also build with 1.8 as UPortal 4.3 includes 1.8 support. */
-  sourceCompatibility = 1.8
-  targetCompatibility = 1.8
+/*
+    jar {
+        manifest {
+            attributes("Manifest-Version": "1.0",
+                        "Built-By": "fds",
+                        "Build-Jdk": "1.8",
+                        "Specification-Title": project.description,
+                        "Specification-Version": project.version,
+                        "Specification-Vendor": "Apereo",
+                        "Implementation-Title": project.description,
+                        "Implementation-Version": project.version,
+                        "Implementation-Vendor": "Jasig")
+        }
+    }
+*/
 
   
   repositories {
     mavenLocal()
-    
+     maven { url "http://repo.spring.io/libs-release" }
+
     maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
     maven { url "http://repository.apache.org/snapshots" }
     maven { url "http://repo.maven.apache.org/maven2" }
   }
+  
+  dependencies {
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'1.1.7.RELEASE'
+	
+		
+	
+}
+
+}
+
+subprojects {
+ // apply plugin: 'java'
+  //  apply plugin: 'maven'
+	//apply plugin: 'war'
+ // apply plugin: 'spring-boot' //Can't apply to bootstrap subproject. Has to be applied to projects manually
+  sourceCompatibility = 1.7
+  targetCompatibility = 1.7
+
+
 
   configurations.all {
 }
