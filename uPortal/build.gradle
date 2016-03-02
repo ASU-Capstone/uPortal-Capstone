@@ -6,6 +6,8 @@ buildscript {
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.7.RELEASE")
 		    classpath 'org.springframework.build.gradle:propdeps-plugin:0.0.5' 
+			
+			
     }
 }
 
@@ -13,11 +15,15 @@ buildscript {
 allprojects  {
 apply plugin: 'java'
     apply plugin: 'maven'
+	apply plugin: 'groovy'
   apply plugin: 'propdeps' 
   apply plugin: 'propdeps-maven' 
   apply plugin: 'propdeps-idea' 
   apply plugin: 'propdeps-eclipse'
+  apply plugin: 'idea'
+  apply plugin: 'eclipse'
   group = 'org.jasig.portal'
+
   
   
 version = '4.3.0-SNAPSHOT'
@@ -57,6 +63,10 @@ version = '4.3.0-SNAPSHOT'
 }
 
 subprojects {
+
+//configure(subprojects - project(':bootstrap') - project(':uportal-db')) { 
+
+
  // apply plugin: 'java'
   //  apply plugin: 'maven'
 	//apply plugin: 'war'
@@ -70,4 +80,8 @@ subprojects {
 }
   
   
+}
+
+configure(subprojects - project(':bootstrap')  - project(':uportal-db')) { 
+  apply plugin: 'spring-boot'
 }
