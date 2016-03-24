@@ -67,7 +67,20 @@ apply plugin: 'spring-boot'
 jar.enabled = true
 description = 'uPortal WAR'
 dependencies {
-
+		//	compile group: 'org.hibernate.common', name: 'hibernate-commons-annotations', version:'5.0.1.Final'
+    compile group: 'org.hibernate', name: 'hibernate-core', version:'4.3.4.Final'
+    compile group: 'org.hibernate', name: 'hibernate-ehcache', version:'4.3.4.Final'
+    compile group: 'org.hibernate', name: 'hibernate-entitymanager', version:'4.3.4.Final'
+    //compile group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.0-api', version:'1.0.1.Final'
+	
+  //  compile 'org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final'
+	//compile group: 'org.hibernate', name: 'hibernate-jpamodelgen', version:'1.2.0.Final'
+	   providedCompile group: 'org.hibernate', name: 'hibernate-jpamodelgen', version:'4.3.4.Final'
+	
+	
+	
+compile group: 'org.jasig.portal.tools', name: 'uportal-ant-tasks', version:'1.0.1'
+compile group: 'org.jasig.portal', name: 'uportal-db', version:'4.2.1'
 
   compile project(':uportal-db')
   compile project(':uportal-search-api')
@@ -156,12 +169,7 @@ exclude(module: 'stax')
     compile group: 'org.codehaus.groovy', name: 'groovy-ant', version:'2.2.2'
     compile group: 'org.codehaus.groovy', name: 'groovy-groovysh', version:'2.2.2'
     compile group: 'org.codehaus.groovy', name: 'groovy-sql', version:'2.2.2'
-			compile group: 'org.hibernate.common', name: 'hibernate-commons-annotations', version:'5.0.1.Final'
-    compile group: 'org.hibernate', name: 'hibernate-core', version:'4.2.19.Final'
-    compile group: 'org.hibernate', name: 'hibernate-ehcache', version:'4.2.19.Final'
-    compile group: 'org.hibernate', name: 'hibernate-entitymanager', version:'4.2.19.Final'
-    compile group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.0-api', version:'1.0.1.Final'
-	compile group: 'org.hibernate', name: 'hibernate-jpamodelgen', version:'1.2.0.Final'
+
 
     compile(group: 'org.jasig.portlet.utils', name: 'portlet-jdbc-util', version:'1.1.0') {
 exclude(module: 'commons-logging')
@@ -290,9 +298,9 @@ exclude(module: 'commons-logging')
     providedCompile(group: 'org.apache.portals.pluto', name: 'pluto-util', version:'2.1.0-M3') {
 exclude(module: 'slf4j-jdk14')
     }
-    providedCompile group: 'org.hibernate', name: 'hibernate-jpamodelgen', version:'1.2.0.Final'
+
   providedCompile project(':uportal-platform-api')
-  
+   providedCompile project(':uportal-db')
   
       compile group: 'org.jvnet.jaxb2_commons', name: 'jaxb2-basics-runtime', version:'0.6.5.1'
  jaxb 'com.sun.xml.bind:jaxb-xjc:2.2.7-b41'
@@ -433,7 +441,6 @@ configurations {
 }
 
 dependencies {
-    compile 'org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final'
     compile "com.mysema.querydsl:querydsl-jpa:2.7.1"
     querydslapt "com.mysema.querydsl:querydsl-apt:2.7.1"
 }

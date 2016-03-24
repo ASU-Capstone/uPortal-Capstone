@@ -12,5 +12,11 @@ dependencies {
 	*/
     compile group: 'org.hsqldb', name: 'hsqldb', version:'2.3.2'
 	
-	 
+	//  compile group: 'com.ibm.db2', name: 'db2-jdbc', version:'2.3.2'
+	  
+	 //  compile group: 'com.ibm.db2', name: 'db2-jdbc', version:'2.3.2'
+	   
+	   	   compile group: 'org.hsqldb', name: 'sqltool', version:'2.3.2'
+		   
+		    compile group: 'org.hibernate', name: 'hibernate-core', version:'4.2.19.Final'
 }
