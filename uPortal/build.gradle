@@ -77,6 +77,15 @@ subprojects {
 
 
   configurations.all {
+  resolutionStrategy {
+   //  force 'asm:asm-all:3.3.1'
+	 
+	   force 'org.hibernate:hibernate-core:4.2.19.Final'
+    force 'org.hibernate:hibernate-ehcache:4.2.19.Final'
+    force 'org.hibernate:hibernate-entitymanager:4.2.19.Final'
+	 
+  }
+  
 }
   
   
