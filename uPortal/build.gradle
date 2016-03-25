@@ -54,7 +54,7 @@ version = '4.3.0-SNAPSHOT'
   }
   
   dependencies {
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'1.1.7.RELEASE'
+//    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'1.1.7.RELEASE'
 	
 		
 	
@@ -83,7 +83,22 @@ subprojects {
 	   force 'org.hibernate:hibernate-core:4.2.19.Final'
     force 'org.hibernate:hibernate-ehcache:4.2.19.Final'
     force 'org.hibernate:hibernate-entitymanager:4.2.19.Final'
-	 
+	
+	force'org.springframework:spring-aop:3.2.9.RELEASE'
+	force'org.springframework:spring-aspects:3.2.9.RELEASE'
+	force'org.springframework:spring-beans:3.2.9.RELEASE'
+	force'org.springframework:spring-context:3.2.9.RELEASE'
+	force'org.springframework:spring-context-support:3.2.9.RELEASE'
+	force'org.springframework:spring-core:3.2.9.RELEASE'
+	
+	force'org.springframework:spring-expression:3.2.9.RELEASE'
+	force'org.springframework:spring-jdbc:3.2.9.RELEASE'
+	force'org.springframework:spring-orm:3.2.9.RELEASE'
+	force'org.springframework:spring-oxm:3.2.9.RELEASE'
+	force'org.springframework:spring-web:3.2.9.RELEASE'
+	force'org.springframework:spring-webmvc:3.2.9.RELEASE'
+	 force'org.springframework:spring-webmvc-portlet:3.2.9.RELEASE'
+	 force'org.springframework:spring-tx:3.2.9.RELEASE'
   }
   
 }
