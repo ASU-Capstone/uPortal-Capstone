@@ -373,7 +373,7 @@ exclude(module: 'slf4j-jdk14')
 
 
 
-/*
+
 dependencies {
    compile(group: 'com.mysema.querydsl', name: 'querydsl-apt', version: '1.8.4')
    //compile(group: 'com.mysema.querydsl', name: 'querydsl-jpa', version: '1.8.4')
@@ -387,22 +387,22 @@ compileJava {
             destdir: destinationDir,
             classpath: configurations.compile.asPath,
             sourcepath: '',
-            target: targetCompatibility,
-            source: sourceCompatibility
+            target: targetCompatibility = 1.8,
+            source: sourceCompatibility = 1.8
         ]
         options.compilerArgs = [
             '-processor', 'com.mysema.query.apt.jpa.JPAAnnotationProcessor',
             '-s', "${destinationDir.absolutePath}".toString()
         ]
-        Map antOptions = otherArgs + options.optionMap()
+        /*Map antOptions = otherArgs + options.optionMap()
         ant.javac(antOptions) {
             source.addToAntBuilder(ant, 'src', FileCollection.AntType.MatchingTask)
             options.compilerArgs.each {value ->
                 compilerarg(value: value)
             }
-        }
+        }*/
     }
-}*/
+} 
 /*
 sourceSets {
      generated
