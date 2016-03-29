@@ -77,7 +77,7 @@ dependencies {
     compile group: 'org.hibernate', name: 'hibernate-entitymanager', version:'4.2.19.Final'
     compile group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.0-api', version:'1.0.1.Final'
 	
-  //  compile 'org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final'
+    compile 'org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final'
 //	compile group: 'org.hibernate', name: 'hibernate-jpamodelgen', version:'1..0.Final'
 	 //  providedCompile group: 'org.hibernate', name: 'hibernate-jpamodelgen', version:'4.3.4.Final'
 	
@@ -429,7 +429,7 @@ task generateQueryDSL(type: Compile, group: 'build', description: 'Generates the
 compileJava.dependsOn generateQueryDSL
 */
 
-/*
+
 sourceSets {
     generated {
         java {
@@ -441,11 +441,12 @@ sourceSets {
 configurations {
     querydslapt
 }
-
+/*
 dependencies {
     compile "com.mysema.querydsl:querydsl-jpa:2.7.1"
     querydslapt "com.mysema.querydsl:querydsl-apt:2.7.1"
 }
+*/
 
 task generateQueryDSL(type: JavaCompile, group: 'build', description: 'Generates the QueryDSL query types') {
     source = sourceSets.main.java
@@ -470,7 +471,7 @@ compileGeneratedJava {
 
 clean {
     delete sourceSets.generated.java.srcDirs
-}*/
+}
 
 /*
 dependencies {
