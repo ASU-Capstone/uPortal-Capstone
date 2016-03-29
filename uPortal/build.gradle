@@ -16,12 +16,12 @@ allprojects  {
 apply plugin: 'java'
     apply plugin: 'maven'
 	apply plugin: 'groovy'
-  apply plugin: 'propdeps' 
-  apply plugin: 'propdeps-maven' 
-  apply plugin: 'propdeps-idea' 
-  apply plugin: 'propdeps-eclipse'
+ // apply plugin: 'propdeps' 
+ // apply plugin: 'propdeps-maven' 
+ // apply plugin: 'propdeps-idea' 
+ // apply plugin: 'propdeps-eclipse'
   apply plugin: 'idea'
-  apply plugin: 'eclipse'
+ // apply plugin: 'eclipse'
   group = 'org.jasig.portal'
 
   
@@ -71,8 +71,8 @@ subprojects {
   //  apply plugin: 'maven'
 	//apply plugin: 'war'
  // apply plugin: 'spring-boot' //Can't apply to bootstrap subproject. Has to be applied to projects manually
-  sourceCompatibility = 1.7
-  targetCompatibility = 1.7
+  sourceCompatibility = 1.8
+  targetCompatibility = 1.8
 
 
 
@@ -81,6 +81,7 @@ subprojects {
    //  force 'asm:asm-all:3.3.1'
 	 
 	   force 'org.hibernate:hibernate-core:4.2.19.Final'
+	    force 'org.hibernate:hibernate-commons-annotations:4.0.2.Final'
     force 'org.hibernate:hibernate-ehcache:4.2.19.Final'
     force 'org.hibernate:hibernate-entitymanager:4.2.19.Final'
 	
@@ -99,6 +100,8 @@ subprojects {
 	force'org.springframework:spring-webmvc:3.2.9.RELEASE'
 	 force'org.springframework:spring-webmvc-portlet:3.2.9.RELEASE'
 	 force'org.springframework:spring-tx:3.2.9.RELEASE'
+	 
+	 //force'org.hibernate:hibernate-jpamodelgen:1.0.1.Final'
   }
   
 }
