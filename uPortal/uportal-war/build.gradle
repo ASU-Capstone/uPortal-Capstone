@@ -18,15 +18,12 @@ jaxb {
 println "dfjkslfj sdklfj sdlfjsdklsdlj fsdkl jsdj"
 	bindingsDir = "uportal-war/src/main/binding"
 	xsdDir = "uportal-war/src/main/resources/xsd"
-	//episodesDir = "$buildDir/generated-sources/xjc/META-INF"
 	  bindings = ["bindings.xjb"] 
 
 	xjc {
 		taskClassname      = "org.jvnet.jaxb2_commons.xjc.XJC2Task"
 		 args = [ "-Xannotate"]
-	//	args = ["-XtoString", "-Xequals", "-XhashCode","-no-header", "-readOnly", "-Xinheritance", "-Xannotate"]
-		System.setProperty('javax.xml.accessExternalSchema', 'file')
-		//	args = ["-XtoString", "-Xequals", "-XhashCode", "-Xdefault-value", "-no-header", "-readOnly", "-Xinheritance", "-Xannotate"]
+	System.setProperty('javax.xml.accessExternalSchema', 'file')
 	}
 }
 
