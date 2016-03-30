@@ -1,80 +1,24 @@
-buildscript {
-    repositories {
-        mavenCentral()
-		   maven { url 'http://repo.spring.io/plugins-release' } 
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.7.RELEASE")
-		    classpath 'org.springframework.build.gradle:propdeps-plugin:0.0.5' 
-			
-			
-    }
+allprojects  {
+  apply plugin: 'maven'
+	apply plugin: 'groovy'
+  
+  group = 'org.jasig.portal'
+version = '4.3.0-SNAPSHOT'
 }
 
-
-allprojects  {
-apply plugin: 'java'
-    apply plugin: 'maven'
-	apply plugin: 'groovy'
-  apply plugin: 'propdeps' 
-  apply plugin: 'propdeps-maven' 
-  apply plugin: 'propdeps-idea' 
-  apply plugin: 'propdeps-eclipse'
-  apply plugin: 'idea'
-  apply plugin: 'eclipse'
-  group = 'org.jasig.portal'
-
-  
-  
-version = '4.3.0-SNAPSHOT'
-/*
-    jar {
-        manifest {
-            attributes("Manifest-Version": "1.0",
-                        "Built-By": "fds",
-                        "Build-Jdk": "1.8",
-                        "Specification-Title": project.description,
-                        "Specification-Version": project.version,
-                        "Specification-Vendor": "Apereo",
-                        "Implementation-Title": project.description,
-                        "Implementation-Version": project.version,
-                        "Implementation-Vendor": "Jasig")
-        }
-    }
-*/
+subprojects {
+  apply plugin: 'java'
+  sourceCompatibility = 1.7
+  targetCompatibility = 1.7
 
   
   repositories {
     mavenLocal()
-     maven { url "http://repo.spring.io/libs-release" }
-
+       maven { url "https://repo.spring.io/libs-release" }
     maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
     maven { url "http://repository.apache.org/snapshots" }
     maven { url "http://repo.maven.apache.org/maven2" }
   }
-  
-  dependencies {
-//    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'1.1.7.RELEASE'
-	
-		
-	
-}
-
-}
-
-subprojects {
-
-//configure(subprojects - project(':bootstrap') - project(':uportal-db')) { 
-
-
- // apply plugin: 'java'
-  //  apply plugin: 'maven'
-	//apply plugin: 'war'
- // apply plugin: 'spring-boot' //Can't apply to bootstrap subproject. Has to be applied to projects manually
-  sourceCompatibility = 1.7
-  targetCompatibility = 1.7
-
-
 
   configurations.all {
   resolutionStrategy {
@@ -102,10 +46,22 @@ subprojects {
   }
   
 }
-  
-  
+
+
+
+buildscript {
+    repositories {
+        mavenCentral()
+		   maven { url 'http://repo.spring.io/plugins-release' } 
+    }
+    dependencies {
+       classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.7.RELEASE")
+		  //  classpath 'org.springframework.build.gradle:propdeps-plugin:0.0.5' 
+			
+			classpath 'com.github.jacobono:gradle-jaxb-plugin:1.3.6'
+    }
 }
 
-configure(subprojects - project(':bootstrap')  - project(':uportal-db')) { 
-  apply plugin: 'spring-boot'
+  
+  
 }

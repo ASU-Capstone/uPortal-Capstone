@@ -1,33 +1,3 @@
-buildscript{
-
-
- repositories {
-        maven { url "https://repo.spring.io/libs-release" }
-        mavenLocal()
-        mavenCentral()
-    }
-
-
-dependencies{
- //     classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.10.RELEASE")
-
-        classpath 'com.github.jacobono:gradle-jaxb-plugin:1.3.6'
-		
-		
-}
-
-}
-
-
-
-
- repositories {
-        maven { url "https://repo.spring.io/libs-release" }
-        mavenLocal()
-        mavenCentral()
-    }
-
-
 
 description = 'uPortal Search API'
 
@@ -35,27 +5,27 @@ apply plugin: 'java'
 apply plugin: 'maven'
 apply plugin: 'spring-boot'
 
-
 apply plugin: 'com.github.jacobono.jaxb'
 
-
+/* JAXB */
 jaxb {
 	bindingsDir = "uportal-search-api/src/main/binding"
 	xsdDir = "uportal-search-api/src/main/resources/xsd"
-	//episodesDir = "$buildDir/generated-sources/xjc/META-INF"
+	//episodesDir = "uportal-search-api/build/generated-sources/xjc/META-INF"
 	  bindings = ["bindings.xjb"] 
 	
 	xjc {
 		
 				taskClassname      = "org.jvnet.jaxb2_commons.xjc.XJC2Task"
-	
+				//generatePackage = "com.fdsfsfsdfsdf.sfdsfs"
 		args = ["-XtoString", "-Xequals", "-XhashCode","-no-header", "-readOnly", "-Xinheritance", "-Xannotate"]
-	
+	//args = ["-XtoString","-Xequals","-Xhashcode","-Xdefault-value","-no-header","-readOnly","-mark-generated"]
 		//args = ["-XtoString", "-Xequals", "-XhashCode", "-Xdefault-value", "-no-header", "-readOnly", "-mark-generated"]
 	}
 }
 
 dependencies {
+
     compile group: 'org.jvnet.jaxb2_commons', name: 'jaxb2-basics-runtime', version:'0.6.5.1'
 
 	   jaxb 'com.sun.xml.bind:jaxb-xjc:2.2.7-b41'
@@ -65,7 +35,4 @@ dependencies {
 	  jaxb "org.jvnet.jaxb2_commons:jaxb2-basics-ant:0.6.5"
   jaxb "org.jvnet.jaxb2_commons:jaxb2-basics:0.6.4"
  jaxb "org.jvnet.jaxb2_commons:jaxb2-basics-annotate:0.6.4"
-	
 }
-
-//compileJava.dependsOn = jaxb

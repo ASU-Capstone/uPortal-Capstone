@@ -24,6 +24,6 @@ dependencies {
     compile group: 'org.apache.portals.pluto', name: 'pluto-container-api', version:'2.1.0-M3'
     compile group: 'org.apache.portals.pluto', name: 'pluto-container-driver-api', version:'2.1.0-M3'
     compile group: 'org.apache.portals.pluto', name: 'pluto-taglib', version:'2.1.0-M3'
-    compile group: 'org.jasig.service.persondir', name: 'person-directory-api', version:'1.7.1-M1'
+    compile group: 'org.jasig.service.persondir', name: 'person-directory-api', version:'1.7.1'
   compile project(':uportal-platform-api')
 }
