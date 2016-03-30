@@ -34,12 +34,10 @@ import org.w3c.dom.NodeList;
  * Looks for, applies against the ilf, and updates accordingly within the plf
  * the set of parameter edits made against channels incorporated from fragments.
  * 
- * @version $Revision$ $Date$
  * @since uPortal 2.6
  */
 public class ParameterEditManager
 {
-    public static final String RCS_ID = "@(#) $Header$";
     private static final Log LOG = LogFactory.getLog(ParameterEditManager.class);
 
     private static IUserLayoutStore dls = null;
@@ -91,18 +89,18 @@ public class ParameterEditManager
             if ( applyEdit( (Element) edits.item(i), ilf ) == false )
             {
                 pSet.removeChild( edits.item(i) );
-                result.changedPLF = true;
+                result.setChangedPLF(true);
             }
             else
             {
-                result.changedILF = true;
+                result.setChangedILF(true);
             }
         }
 
         if ( pSet.getChildNodes().getLength() == 0 )
         {
             plf.getDocumentElement().removeChild( pSet );
-            result.changedPLF = true;
+            result.setChangedPLF(true);
         }
     }
 
