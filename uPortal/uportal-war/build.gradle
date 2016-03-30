@@ -15,7 +15,7 @@ configurations {
 
 
 jaxb {
-println "dfjkslfj sdklfj sdlfjsdklsdlj fsdkl jsdj"
+
 	bindingsDir = "uportal-war/src/main/binding"
 	xsdDir = "uportal-war/src/main/resources/xsd"
 	  bindings = ["bindings.xjb"] 
@@ -27,7 +27,7 @@ println "dfjkslfj sdklfj sdlfjsdklsdlj fsdkl jsdj"
 	}
 }
 
-
+compileJava.dependsOn xjc
 
 
 dependencies {

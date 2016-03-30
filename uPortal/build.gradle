@@ -50,6 +50,7 @@ subprojects {
 
 
 buildscript {
+gradle.startParameter.continueOnFailure = true
     repositories {
         mavenCentral()
 		   maven { url 'http://repo.spring.io/plugins-release' } 

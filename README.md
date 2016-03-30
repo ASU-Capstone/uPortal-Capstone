@@ -38,7 +38,6 @@ gradle build
 ```
 
 ### Notes
-- For the present, run `$gradle xjc` before you attempt to build
 
 ### Todo
 
