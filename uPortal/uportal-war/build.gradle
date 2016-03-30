@@ -26,7 +26,7 @@ jaxb {
 	System.setProperty('javax.xml.accessExternalSchema', 'file')
 	}
 }
-
+compileJava.dependsOn 'xsd-dependency-tree'
 compileJava.dependsOn xjc
 
 

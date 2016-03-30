@@ -21,7 +21,7 @@ jaxb {
 		args = ["-XtoString", "-Xequals", "-XhashCode","-no-header", "-readOnly", "-Xinheritance", "-Xannotate"]
 	}
 }
-
+mainClassName = ' '
 compileJava.dependsOn xjc
 
 dependencies {

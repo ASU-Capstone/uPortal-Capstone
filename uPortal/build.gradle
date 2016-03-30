@@ -15,9 +15,12 @@ subprojects {
   repositories {
     mavenLocal()
        maven { url "https://repo.spring.io/libs-release" }
+	   maven { url "https://developer.jasig.org/repo/content/groups/m2-legacy"}
     maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
     maven { url "http://repository.apache.org/snapshots" }
     maven { url "http://repo.maven.apache.org/maven2" }
+	maven { url "http://www.esco-portail.org/nexus/content/groups/public"}
+	maven { url "https://caldav4j.googlecode.com/svn/maven"}
   }
 
   configurations.all {
