@@ -71,15 +71,7 @@ apply plugin: 'spring-boot'
 jar.enabled = true
 description = 'uPortal WAR'
 dependencies {
-	compile group: 'org.hibernate.common', name: 'hibernate-commons-annotations', version:'4.0.2.Final'
-    compile group: 'org.hibernate', name: 'hibernate-core', version:'4.2.19.Final'
-    compile group: 'org.hibernate', name: 'hibernate-ehcache', version:'4.2.19.Final'
-    compile group: 'org.hibernate', name: 'hibernate-entitymanager', version:'4.2.19.Final'
-    compile group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.0-api', version:'1.0.1.Final'
-	
-    compile 'org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final'
-//	compile group: 'org.hibernate', name: 'hibernate-jpamodelgen', version:'1..0.Final'
-	 //  providedCompile group: 'org.hibernate', name: 'hibernate-jpamodelgen', version:'4.3.4.Final'
+
 	
 	
 	
@@ -302,9 +294,17 @@ exclude(module: 'commons-logging')
     providedCompile(group: 'org.apache.portals.pluto', name: 'pluto-util', version:'2.1.0-M3') {
 exclude(module: 'slf4j-jdk14')
     }
-
+	compile group: 'org.hibernate.common', name: 'hibernate-commons-annotations', version:'4.0.2.Final'
+    compile group: 'org.hibernate', name: 'hibernate-core', version:'4.2.19.Final'
+    compile group: 'org.hibernate', name: 'hibernate-ehcache', version:'4.2.19.Final'
+    compile group: 'org.hibernate', name: 'hibernate-entitymanager', version:'4.2.19.Final'
+    compile group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.0-api', version:'1.0.1.Final'
+	
+  //  compile 'org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final'
+//	compile group: 'org.hibernate', name: 'hibernate-jpamodelgen', version:'1..0.Final'
+	   providedCompile group: 'org.hibernate', name: 'hibernate-jpamodelgen', version:'4.3.4.Final'
   providedCompile project(':uportal-platform-api')
-   providedCompile project(':uportal-db')
+  // providedCompile project(':uportal-db')
   
       compile group: 'org.jvnet.jaxb2_commons', name: 'jaxb2-basics-runtime', version:'0.6.5.1'
  jaxb 'com.sun.xml.bind:jaxb-xjc:2.2.7-b41'
@@ -328,10 +328,19 @@ exclude(module: 'slf4j-jdk14')
 
 
 
-
-
-
-
+sourceSets {
+    generated {
+        java {
+            srcDirs = ['src/main/java/generated']
+		//	testDirs = ['uportal-war/build/classes/main']
+        }
+    }
+}
+/*
+configurations{
+ querydslapt
+}
+*/
 
 
 
@@ -339,60 +348,70 @@ exclude(module: 'slf4j-jdk14')
 
 //////////////////////Testing jpa annotation 
 
-
-
-
-
-
-
-
-ext {
-    generatedSourcesDir = file("${buildDir}/generated-sources/javac/main/java")
+clean {
+    delete sourceSets.generated.java.srcDirs
 }
-
-
-
-sourceSets {
-jpa{        
-java {
-srcDir 'src/main/resources/META-INF'
-            srcDir 'src/main/java'
-			
-           srcDir generatedSourcesDir
-		   include '**/aggr/**'
-		   include '**'
-		   include '**/META-INF/*'
-        }
-    }
-}
-
-
-
-
-
 
 dependencies {
   compile "com.mysema.querydsl:querydsl-jpa:3.6.3"
    compile(group: 'com.mysema.querydsl', name: 'querydsl-apt', version: '3.6.3')
    //compile(group: 'com.mysema.querydsl', name: 'querydsl-jpa', version: '1.8.4')
    compile(group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.7')
+    // querydslapt 'com.mysema.querydsl:querydsl-apt:2.7.1'
+}
+
+/*
+task generateQueryDSL(type: JavaCompile, group: 'build', description: 'Generates the QueryDSL query types') {
+    source = sourceSets.main.java
+	
+    classpath = configurations.compile + configurations.querydslapt
+	
+    options.compilerArgs = [
+           "-proc:only",
+            "-processor", "com.mysema.query.apt.jpa.JPAAnnotationProcessor",
+			//   '-s', "${destinationDir.absolutePath}".toString()
+    ]
+    destinationDir = sourceSets.generated.java.srcDirs.iterator().next()
 }
 
 compileJava {
+    dependsOn generateQueryDSL
+    source generateQueryDSL.destinationDir
+}
+
+
+compileGeneratedJava {
+    dependsOn generateQueryDSL
+    options.warnings = false
+    classpath += sourceSets.main.runtimeClasspath
+	//classpath += sourceSets.generated.java.srcDirs
+}*/
+
+compileJava {
     doFirst {
+//	classpath += sourceSets.main.runtimeClasspath
+	//println destinationDir
+//	println configurations.compile.asPath
+//	println " ---- - - - - -"
+	//  generatedSourcesDir.mkdirs()
+	//destinationDir.dump()
+	// destinationDir = ["fdjskldskjfdskl"]
+	 destinationDir.mkdirs()
+	//  destinationDir = sourceSets.generated.java.srcDirs.iterator().next()
         Map otherArgs = [
-            includeAntRuntime: true,
-            destdir: destinationDir,
+            includeAntRuntime: false,
+            destdir: destinationDir ,
             classpath: configurations.compile.asPath,
             sourcepath: '',
-            target: targetCompatibility = 1.8,
-            source: sourceCompatibility = 1.8
+            target: targetCompatibility,
+            source: sourceCompatibility
         ]
         options.compilerArgs = [
+		"-proc:only",
             '-processor', 'com.mysema.query.apt.jpa.JPAAnnotationProcessor',
             '-s', "${destinationDir.absolutePath}".toString()
         ]
-        Map antOptions = otherArgs + options.optionMap()
+       Map antOptions = otherArgs + options.optionMap()
         ant.javac(antOptions) {
             source.addToAntBuilder(ant, 'src', FileCollection.AntType.MatchingTask)
             options.compilerArgs.each {value ->
@@ -429,7 +448,7 @@ task generateQueryDSL(type: Compile, group: 'build', description: 'Generates the
 compileJava.dependsOn generateQueryDSL
 */
 
-
+/*
 sourceSets {
     generated {
         java {
@@ -441,12 +460,11 @@ sourceSets {
 configurations {
     querydslapt
 }
-/*
+
 dependencies {
     compile "com.mysema.querydsl:querydsl-jpa:2.7.1"
     querydslapt "com.mysema.querydsl:querydsl-apt:2.7.1"
 }
-*/
 
 task generateQueryDSL(type: JavaCompile, group: 'build', description: 'Generates the QueryDSL query types') {
     source = sourceSets.main.java
@@ -471,7 +489,7 @@ compileGeneratedJava {
 
 clean {
     delete sourceSets.generated.java.srcDirs
-}
+}*/
 
 /*
 dependencies {
