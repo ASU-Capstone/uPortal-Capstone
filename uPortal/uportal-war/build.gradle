@@ -21,7 +21,7 @@ jaxb {
 	  bindings = ["bindings.xjb"] 
 
 	xjc {
-		taskClassname      = "org.jvnet.jaxb2_commons.xjc.XJC2Task"
+		taskClassname   = "org.jvnet.jaxb2_commons.xjc.XJC2Task"
 		 args = [ "-Xannotate"]
 	System.setProperty('javax.xml.accessExternalSchema', 'file')
 	}
@@ -32,15 +32,13 @@ compileJava.dependsOn xjc
 
 dependencies {
 
-    compile group: 'org.jvnet.jaxb2_commons', name: 'jaxb2-basics-runtime', version:'0.6.5.1'
-
-	   jaxb 'com.sun.xml.bind:jaxb-xjc:2.2.7-b41'
-    jaxb 'com.sun.xml.bind:jaxb-impl:2.2.7-b41'
-    jaxb 'javax.xml.bind:jaxb-api:2.2.7'
-	
-	  jaxb "org.jvnet.jaxb2_commons:jaxb2-basics-ant:0.6.5"
-  jaxb "org.jvnet.jaxb2_commons:jaxb2-basics:0.6.4"
- jaxb "org.jvnet.jaxb2_commons:jaxb2-basics-annotate:0.6.4"
+    compile group: 'org.jvnet.jaxb2_commons', name: 'jaxb2-basics-runtime', version:jaxb2BasicsRuntimeVer
+	   jaxb 'com.sun.xml.bind:jaxb-xjc:${jaxbXjcVer}'
+    jaxb 'com.sun.xml.bind:jaxb-impl:${jaxbImplVer}'
+    jaxb 'javax.xml.bind:jaxb-api:${jaxbApiVer}'
+	  jaxb "org.jvnet.jaxb2_commons:jaxb2-basics-ant:${jaxb2BasicsAntVer}"
+  jaxb "org.jvnet.jaxb2_commons:jaxb2-basics:${jaxb2BasicsVer}"
+ jaxb "org.jvnet.jaxb2_commons:jaxb2-basics-annotate:${jaxb2BasicsAnnotateVer}"
 }
 
 
