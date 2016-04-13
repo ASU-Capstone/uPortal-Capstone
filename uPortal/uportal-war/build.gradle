@@ -64,17 +64,17 @@ dependencies {
 dependencies {
   compile project(':uportal-db')
   compile project(':uportal-search-api')
-    compile group: 'org.antlr', name: 'stringtemplate', version:'4.0.2'
-    compile group: 'aopalliance', name: 'aopalliance', version:'1.0'
-    compile(group: 'org.jasig.cas.client', name: 'cas-client-core', version:'3.2.2') {
+    compile group: 'org.antlr', name: 'stringtemplate', version:stringtemplateVer
+    compile group: 'aopalliance', name: 'aopalliance', version:aopallianceVer
+    compile(group: 'org.jasig.cas.client', name: 'cas-client-core', version:casClientCoreVer) {
 exclude(module: 'commons-logging')
 exclude(module: 'opensaml')
     }
-    compile group: 'ch.qos.logback', name: 'logback-classic', version:'1.1.2'
-    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version:'2.3.3'
-    compile group: 'com.fasterxml.jackson.module', name: 'jackson-module-jaxb-annotations', version:'2.3.3'
-    compile group: 'com.google.guava', name: 'guava', version:'16.0.1'
-    compile(group: 'com.googlecode.cernunnos', name: 'cernunnos', version:'1.2.2') {
+    compile group: 'ch.qos.logback', name: 'logback-classic', version:logbackClassicVer
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version:jacksonDatabindVer
+    compile group: 'com.fasterxml.jackson.module', name: 'jackson-module-jaxb-annotations', version:jacksonModuleJaxbAnnotationsVer
+    compile group: 'com.google.guava', name: 'guava', version:guavaVer
+    compile(group: 'com.googlecode.cernunnos', name: 'cernunnos', version:cernunnosVer) {
 exclude(module: 'commons-logging')
 exclude(module: 'cvsclient')
 exclude(module: 'spring')
