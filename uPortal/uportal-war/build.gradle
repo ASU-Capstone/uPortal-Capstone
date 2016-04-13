@@ -33,9 +33,9 @@ compileJava.dependsOn xjc
 dependencies {
 
     compile group: 'org.jvnet.jaxb2_commons', name: 'jaxb2-basics-runtime', version:jaxb2BasicsRuntimeVer
-	   jaxb 'com.sun.xml.bind:jaxb-xjc:${jaxbXjcVer}'
-    jaxb 'com.sun.xml.bind:jaxb-impl:${jaxbImplVer}'
-    jaxb 'javax.xml.bind:jaxb-api:${jaxbApiVer}'
+	   jaxb "com.sun.xml.bind:jaxb-xjc:${jaxbXjcVer}"
+    jaxb "com.sun.xml.bind:jaxb-impl:${jaxbImplVer}"
+    jaxb "javax.xml.bind:jaxb-api:${jaxbApiVer}"
 	  jaxb "org.jvnet.jaxb2_commons:jaxb2-basics-ant:${jaxb2BasicsAntVer}"
   jaxb "org.jvnet.jaxb2_commons:jaxb2-basics:${jaxb2BasicsVer}"
  jaxb "org.jvnet.jaxb2_commons:jaxb2-basics-annotate:${jaxb2BasicsAnnotateVer}"
