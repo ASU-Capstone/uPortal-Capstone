@@ -60,3 +60,11 @@ gradle.startParameter.continueOnFailure = true
   
   
 }
+
+task checkJavaVersion << {
+	def javaVersion = Jvm.Current().javaVersion
+	assert javaVersion.isJava7Compatible(), "Java 7 or higher is required"
+	
+	println "Installed Java Version: $javaVersion"
+}
+
