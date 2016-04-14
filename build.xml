@@ -640,10 +640,12 @@
                     <isset property="dir" />
                     <isset property="file" />
                     <isset property="archive" />
+                    <isset property="files" />
+                    <isset property="filesListFile" />
                 </xor>
             </not>
             <then>
-                <fail>Either '-Ddir' or '-Dfile' or '-Darchive' must be specified for data import</fail>
+                <fail>One of either '-Ddir' or '-Dfile' or '-Darchive' or '-Dfiles' or '-DfilesListFile' must be specified for data import</fail>
             </then>
         </if>
 
@@ -651,21 +653,24 @@
         <property name="pattern" value=" " />
         <property name="file" value=" " />
         <property name="dir" value=" " />
-    	<property name="archive" value=" " />
+        <property name="archive" value=" " />
+        <property name="files" value=" " />
+        <property name="filesListFile" value=" " />
 
         <groovy-safe-path property="dirFullEscaped" input="${dir}" />
         <groovy-safe-path property="fileFullEscaped" input="${file}" />
-    	<groovy-safe-path property="archiveFullEscaped" input="${archive}" />
+        <groovy-safe-path property="archiveFullEscaped" input="${archive}" />
         <groovy-safe-path property="targetDirEscaped" input="${targetdir}" />
-
+        <groovy-safe-path property="filesFullEscaped" input="${files}" />
+        <groovy-safe-path property="filesListFileFullEscaped" input="${filesListFile}" />
 
         <echo>Creating Data Import Script</echo>
         <echo file="${portal-shell-script}" append="true">
-            //dataImport(String target, String dataDir, String pattern, String file, String archive, String logDir)
+            //dataImport(String target, String dataDir, String pattern, String filesList, String archive, String logDir)
             portalShellBuildHelper.dataImport("data-import", 
                 /${dirFullEscaped}/,
                 /${pattern}/,
-                /${fileFullEscaped}/,
+                portalShellBuildHelper.getFilesListStringFromInput(/${fileFullEscaped}/,/${filesFullEscaped}/,/${filesListFileFullEscaped}/),
                 /${archiveFullEscaped}/,
                 /${targetDirEscaped}/);
         </echo>
@@ -1670,7 +1675,24 @@ IMPORTANT: The '-Dpattern=' property is no longer a regular expression and is a 
         </condition>
         <property name="windowsCmdArg1" value="-Djasig.ignore"/>
         <condition property="windowsCmdArg2" value="mvn.bat">
-            <os family="windows"/>
+            <and>
+              <os family="windows"/>
+              <!--
+               | Starting with v3.3.x, mvn.bat is now mvn.cmd
+               | See https://issues.jasig.org/browse/UP-4560
+               +-->
+              <available file="mvn.bat" filepath="${env.M2_HOME}\bin"/>
+            </and>
+        </condition>
+        <condition property="windowsCmdArg2" value="mvn.cmd">
+            <and>
+              <os family="windows"/>
+              <!--
+               | Starting with v3.3.x, mvn.bat is now mvn.cmd
+               | See https://issues.jasig.org/browse/UP-4560
+               +-->
+              <available file="mvn.cmd" filepath="${env.M2_HOME}\bin"/>
+            </and>
         </condition>
         <property name="windowsCmdArg2" value="-Djasig.ignore"/>
 

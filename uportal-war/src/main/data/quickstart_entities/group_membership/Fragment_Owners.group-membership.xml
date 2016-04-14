@@ -36,6 +36,7 @@
     <literal>news-lo</literal>
     <literal>staff-lo</literal>
     <literal>student-lo</literal>
+    <literal>tenant-admin-lo</literal>
     <literal>welcome-lo</literal>
     <group>Subscribable Fragments</group>
   </children>

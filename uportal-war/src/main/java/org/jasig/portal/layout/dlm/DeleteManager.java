@@ -38,7 +38,6 @@ import org.w3c.dom.NodeList;
  */
 public class DeleteManager
 {
-    public static final String RCS_ID = "@(#) $Header$";
     private static final Log LOG = LogFactory.getLog(DeleteManager.class);
 
     private static IUserLayoutStore dls = null;
@@ -91,18 +90,18 @@ public class DeleteManager
             if ( applyDelete( (Element) deletes.item(i), ilf ) == false )
             {
                 dSet.removeChild( deletes.item(i) );
-                result.changedPLF = true;
+                result.setChangedPLF(true);
             }
             else
             {
-                result.changedILF = true;
+                result.setChangedILF(true);
             }
         }
 
         if ( dSet.getChildNodes().getLength() == 0 )
         {
             plf.getDocumentElement().removeChild( dSet );
-            result.changedPLF = true;
+            result.setChangedPLF(true);
         }
     }
 
