@@ -1,5 +1,5 @@
 allprojects  {
-  apply plugin: 'maven'
+	apply plugin: 'maven'
 	apply plugin: 'groovy'
 }
 
@@ -39,6 +39,8 @@ subprojects {
 	force ("org.springframework:spring-webmvc:${springframeworkVer}")
 	 force ("org.springframework:spring-webmvc-portlet:${springframeworkVer}")
 	 force ("org.springframework:spring-tx:${springframeworkVer}")
+	 
+	 force("com.google.guava:guava:${guavaVer}")
   }
   
 }
