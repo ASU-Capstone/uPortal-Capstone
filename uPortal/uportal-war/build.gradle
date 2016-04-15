@@ -13,7 +13,6 @@ configurations {
     jaxb
 }
 
-
 jaxb {
 
 	bindingsDir = "uportal-war/src/main/binding"
@@ -282,3 +281,44 @@ exclude(module: 'slf4j-jdk14')
     providedCompile group: 'org.hibernate', name: 'hibernate-jpamodelgen', version:'1.2.0.Final'
   providedCompile project(':uportal-platform-api')
 }
+
+/**
+ * Filter ('expand' in Gradle) a small number of project configuration files
+ * using gradle.properties PLUS the environment-specific .properties file for
+ * this deployment.
+ */
+Properties props = new Properties()
+new File("${projectDir}/../filters/local.properties").withInputStream { 
+  stream -> props.load(stream) 
+}
+new File("${projectDir}/../gradle.properties").withInputStream { 
+  stream -> props.load(stream) 
+}
+processResources {
+    from 'src/main/resources'
+    // List of files that require token processing
+    include 'org/apache/pluto/driver/container/pluto-configuration.properties'
+    include 'properties/portal.properties'
+    include 'properties/rdbm.properties'
+    include 'properties/security.properties'
+    include 'logback.xml'
+    into 'build/resources/main'
+    expand props  // This method causes the includes list to be evaluated as GStrings as they are copied
+    doLast {
+        copy {
+            from 'src/main/resources'
+            // Same list as above -- MUST MATCH
+            exclude 'org/apache/pluto/driver/container/pluto-configuration.properties'
+            exclude 'properties/portal.properties'
+            exclude 'properties/rdbm.properties'
+            exclude 'properties/security.properties'
+            exclude 'logback.xml'
+            into 'build/resources/main'
+        }
+    }
+}
+/*
+processResources {
+}
+*/
+
