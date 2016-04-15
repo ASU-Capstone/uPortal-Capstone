@@ -73,7 +73,7 @@
     <!--
     <cacheManagerPeerProviderFactory
         class="net.sf.ehcache.distribution.RMICacheManagerPeerProviderFactory"
-        properties="peerDiscovery=manual,rmiUrls=${environment.build.cas.clearpass.cache.rmi.urls}" />
+        properties="peerDiscovery=manual,rmiUrls=${environment_build_cas_clearpass_cache_rmi_urls}" />
     -->
     <!--
      | Required if using Manual or Automatic RMI Replicated Caching Peer Discovery for CAS ClearPass in clustered
@@ -82,7 +82,7 @@
     <!--
     <cacheManagerPeerListenerFactory
         class="net.sf.ehcache.distribution.RMICacheManagerPeerListenerFactory"
-        properties="port=${environment.build.cas.clearpass.cache.rmi.listenerPort}" />
+        properties="port=${environment_build_cas_clearpass_cache_rmi_listenerPort}" />
     -->
 
     <!-- End of RMI Replicated Caching for CAS ClearPass in uPortal. -->

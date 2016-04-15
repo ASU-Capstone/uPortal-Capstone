@@ -101,7 +101,7 @@
             <list>
                 <!-- mobile device -->
                 <bean class="org.jasig.portal.layout.profile.UserAgentProfileMapper.Mapping">
-                    <property name="pattern" value="${mobile.user.agent.regex}"/>
+                    <property name="pattern" value="${org.jasig.portal.http.header.userAgent.mobile.regex.pattern}"/>
                     <property name="profileName" value="mobileDefault" />
                 </bean>
             </list>
